@@ -17,6 +17,22 @@ final class Sparrate
      */
     public static function calc(float $kapitalstock, int $jahre, float $zinssatz): float
     {
-        return 0;
+        return round($kapitalstock / self::getZinsfaktor($zinssatz, $jahre) / 12, 2);
+    }
+
+    /**
+     * @param float $zinssatz
+     * @param int   $jahre
+     *
+     * @return float
+     */
+    private static function getZinsfaktor(float $zinssatz, int $jahre): float
+    {
+        $zinsfaktor = 0;
+        for ($i = 1; $i <= $jahre; $i++) {
+            $zinsfaktor += pow(1 + $zinssatz, $i - 1);
+        }
+
+        return $zinsfaktor;
     }
 }

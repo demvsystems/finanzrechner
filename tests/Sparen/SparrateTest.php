@@ -12,7 +12,7 @@ final class SparrateTest extends TestCase
 {
     private $testValues = [
         [
-            'kapitalstock' => 406786.00,
+            'kapitalstock' => 406486.00,
             'jahre'        => 40,
             'zinssatz'     => 0.03,
             'sparrate'     => 449.25
