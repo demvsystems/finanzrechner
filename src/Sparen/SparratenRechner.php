@@ -48,7 +48,7 @@ final class SparratenRechner
     {
         $zinsfaktor = 0;
         for ($i = 1; $i <= $jahre; $i++) {
-            $zinsfaktor += pow(1 + $this->zinssatz, $i - 1);
+            $zinsfaktor += (1 + $this->zinssatz) ** ($i - 1);
         }
 
         return $zinsfaktor;
