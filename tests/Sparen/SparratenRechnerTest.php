@@ -5,10 +5,10 @@ namespace Finanzrechner\Sparen;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class Sparrate
+ * Class SparratenRechnerTest
  * @package Finanzrechner\Sparen
  */
-final class SparrateTest extends TestCase
+final class SparratenRechnerTest extends TestCase
 {
     private $testValues = [
         [
@@ -43,8 +43,9 @@ final class SparrateTest extends TestCase
     public function testCalc()
     {
         foreach ($this->testValues as $testValue) {
-            $this->assertEquals($testValue['sparrate'],
-                                Sparrate::calc($testValue['kapitalstock'], $testValue['jahre'], $testValue['zinssatz']));
+            $sparratenRechner = new SparratenRechner($testValue['zinssatz']);
+            $sparratenRechner->calc($testValue['kapitalstock'], $testValue['jahre']);
+            $this->assertEquals($testValue['sparrate'], $sparratenRechner->getSparrate(2));
         }
     }
 }
