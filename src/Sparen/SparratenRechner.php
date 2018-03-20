@@ -31,10 +31,12 @@ final class SparratenRechner
     /**
      * @param float $kapitalstock
      * @param int   $jahre
+     *
+     * @return float
      */
-    public function calc(float $kapitalstock, int $jahre): void
+    public function calc(float $kapitalstock, int $jahre): float
     {
-        $this->sparrate = $kapitalstock / $this->getZinsfaktor($jahre) / 12;
+        return round($this->sparrate = $kapitalstock / $this->getZinsfaktor($jahre) / 12, 2);
     }
 
     /**
@@ -50,15 +52,5 @@ final class SparratenRechner
         }
 
         return $zinsfaktor;
-    }
-
-    /**
-     * @param int $round
-     *
-     * @return float
-     */
-    public function getSparrate(int $round = 2): float
-    {
-        return round($this->sparrate, $round);
     }
 }

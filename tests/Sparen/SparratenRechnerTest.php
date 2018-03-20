@@ -1,7 +1,8 @@
 <?php
 
-namespace Finanzrechner\Sparen;
+namespace Finanzrechner\Tests\Sparen;
 
+use Finanzrechner\Sparen\SparratenRechner;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -44,8 +45,7 @@ final class SparratenRechnerTest extends TestCase
     {
         foreach ($this->testValues as $testValue) {
             $sparratenRechner = new SparratenRechner($testValue['zinssatz']);
-            $sparratenRechner->calc($testValue['kapitalstock'], $testValue['jahre']);
-            $this->assertEquals($testValue['sparrate'], $sparratenRechner->getSparrate(2));
+            $this->assertEquals($testValue['sparrate'], $sparratenRechner->calc($testValue['kapitalstock'], $testValue['jahre']));
         }
     }
 }

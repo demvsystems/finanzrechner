@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Finanzrechner\\": "src/"
+            "Finanzrechner\\": "src/",
+            "Finanzrechner\\Tests\\": "tests/"
         }
     },
     "scripts": {
