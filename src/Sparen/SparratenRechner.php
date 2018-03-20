@@ -14,11 +14,6 @@ final class SparratenRechner
     private $zinssatz;
 
     /**
-     * @var
-     */
-    private $sparrate;
-
-    /**
      * SparratenRechner constructor.
      *
      * @param float $zinssatz
@@ -36,7 +31,7 @@ final class SparratenRechner
      */
     public function calc(float $kapitalstock, int $jahre): float
     {
-        return round($this->sparrate = $kapitalstock / $this->getZinsfaktor($jahre) / 12, 2);
+        return round($kapitalstock / $this->getZinsfaktor($jahre) / 12, 2);
     }
 
     /**
