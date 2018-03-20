@@ -1,0 +1,15 @@
+language: php
+php:
+  - 7.1
+  - 7.2
+  - nightly
+install:
+  - composer self-update
+  - composer install --prefer-dist --optimize-autoloader
+script:
+  - composer coverage
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
