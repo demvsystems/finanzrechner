@@ -4,8 +4,12 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "DEMV-Systems",
+            "name": "DEMV Systems",
             "email": "packages@demv.de"
+        },
+        {
+            "name": "Keno Wessels",
+            "email": "k.wessels@demv.de"
         }
     ],
     "require": {
