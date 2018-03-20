@@ -1,0 +1,14 @@
+{
+    "name": "demvsystems/finanzrechner",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "DEMV-Systems",
+            "email": "packages@demv.de"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    }
+}
