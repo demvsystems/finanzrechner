@@ -91,5 +91,4 @@ final class GesetzlicheRenteRechner
     {
         return $alter >= $this->arbeitsbeginn && $alter <= $this->renteneintritt;
     }
-
 }

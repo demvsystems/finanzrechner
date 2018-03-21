@@ -40,4 +40,21 @@ final class GesetzlicheRenteRechnerTest extends TestCase
             $this->assertEquals($testcase['rente'], (new GesetzlicheRenteRechner())->calc($testcase['alter'], $testcase['gehalt']));
         }
     }
+
+    public function testWithSetters()
+    {
+        $rechner = new GesetzlicheRenteRechner();
+        $rechner->setArbeitsbeginn(20);
+        $rechner->setRenteneintritt(65);
+        $rechner->setDurchschnittlicheGehaltssteigerung(0.03);
+        $this->assertEquals(1057.85, $rechner->calc(50, 4000 * 12));
+    }
+
+    public function testCalcPossible()
+    {
+        $rechner = new GesetzlicheRenteRechner();
+        $this->assertFalse($rechner->calcPossible(10));
+        $this->assertFalse($rechner->calcPossible(70));
+        $this->assertTrue($rechner->calcPossible(50));
+    }
 }
