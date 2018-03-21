@@ -26,6 +26,12 @@
             "Finanzrechner\\Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:demvsystems/werte.git"
+        }
+    ],
     "scripts": {
         "test": "phpunit",
         "coverage": "phpunit --coverage-clover=coverage.xml"
