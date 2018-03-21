@@ -27,6 +27,9 @@ final class KapitalstockRechner
     }
 
     /**
+     * Berechnet den benötigten Kapitalstock bei einer fixen monatlichen Entnahme über einen gegebene Zeitraum unter Berücksichtigung
+     * der entstehenden Zinserträge
+     *
      * @param float $monatlicheEntnahme
      * @param int   $laufzeit
      *

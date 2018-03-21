@@ -24,6 +24,9 @@ final class SparratenRechner
     }
 
     /**
+     * Berechnet die benötigte monatliche Rate für den Aufbau eines Kapitalstocks über einen gegebene Zeitraum unter Berücksichtigung
+     * der entstandenen Zinserträge
+     *
      * @param float $kapitalstock
      * @param int   $jahre
      *
