@@ -12,12 +12,6 @@
             "email": "k.wessels@demv.de"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:demvsystems/werte.git"
-        }
-    ],
     "require": {
         "php": "^7.1",
         "dgame/php-ensurance": "^1",

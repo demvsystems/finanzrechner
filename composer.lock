@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb78db4f6b9158f86ee14198cb9f66fd",
+    "content-hash": "a3c8de2931ba1470afc72ffe5bcf6280",
     "packages": [
         {
             "name": "demvsystems/werte",
