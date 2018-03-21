@@ -73,8 +73,8 @@ final class GesetzlicheRenteRechner
             throw new InvalidArgumentException(sprintf('Das Alter muss zwischen %s und %s liegen', $this->arbeitsbeginn, $this->renteneintritt));
         }
         $monatslohn          = $bruttojahresgehalt / 12;
-        $anfangsgehalt       = $monatslohn * pow(1 - $this->durchschnittlicheGehaltssteigerung, $alter - $this->arbeitsbeginn);
-        $endgehalt           = $monatslohn * pow(1 + $this->durchschnittlicheGehaltssteigerung, $this->renteneintritt - $alter);
+        $anfangsgehalt       = $monatslohn * (1 - $this->durchschnittlicheGehaltssteigerung) ** ($alter - $this->arbeitsbeginn);
+        $endgehalt           = $monatslohn * (1 + $this->durchschnittlicheGehaltssteigerung) ** ($this->renteneintritt - $alter);
         $durchschnittsgehalt = ($anfangsgehalt + $endgehalt) / 2;
 
         $rente = ($durchschnittsgehalt / 100) * ($this->renteneintritt - $this->arbeitsbeginn) * self::KORREKTURFAKTOR;
