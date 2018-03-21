@@ -3,6 +3,7 @@
 namespace Finanzrechner\Tests\Rente;
 
 use Finanzrechner\Rente\GesetzlicheRenteRechner;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -56,5 +57,11 @@ final class GesetzlicheRenteRechnerTest extends TestCase
         $this->assertFalse($rechner->calcPossible(10));
         $this->assertFalse($rechner->calcPossible(70));
         $this->assertTrue($rechner->calcPossible(50));
+    }
+
+    public function testCalcNotPossible()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        (new GesetzlicheRenteRechner())->calc(10, 10);
     }
 }
