@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": "^7.1",
-        "dgame/php-ensurance": "^1"
+        "dgame/php-ensurance": "^1",
+        "demvsystems/werte": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"
@@ -25,6 +26,12 @@
             "Finanzrechner\\Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:demvsystems/werte.git"
+        }
+    ],
     "scripts": {
         "test": "phpunit",
         "coverage": "phpunit --coverage-clover=coverage.xml"
