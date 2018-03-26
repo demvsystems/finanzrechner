@@ -47,7 +47,7 @@ final class GesetzlicheRenteRechnerTest extends TestCase
         $rechner = new GesetzlicheRenteRechner();
         $rechner->setArbeitsbeginn(20);
         $rechner->setRenteneintritt(65);
-        $rechner->setDurchschnittlicheGehaltssteigerung(0.03);
+        $rechner->setDurchschnittlicheGehaltssteigerung(3);
         $this->assertEquals(1057.85, $rechner->calc(50, 4000 * 12));
     }
 

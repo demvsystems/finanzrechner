@@ -28,7 +28,7 @@ final class GesetzlicheRenteRechner
     /**
      * @var float
      */
-    private $durchschnittlicheGehaltssteigerung = 0.02;
+    private $durchschnittlicheGehaltssteigerung = 2;
 
     /**
      * @param int $arbeitsbeginn
@@ -50,6 +50,7 @@ final class GesetzlicheRenteRechner
 
     /**
      * @param float $durchschnittlicheGehaltssteigerung
+     *          Die durchschnittliche Gehaltssteigerung in %
      */
     public function setDurchschnittlicheGehaltssteigerung(float $durchschnittlicheGehaltssteigerung): void
     {
@@ -73,8 +74,8 @@ final class GesetzlicheRenteRechner
             throw new InvalidArgumentException(sprintf('Das Alter muss zwischen %s und %s liegen', $this->arbeitsbeginn, $this->renteneintritt));
         }
         $monatslohn          = $bruttojahresgehalt / 12;
-        $anfangsgehalt       = $monatslohn * (1 - $this->durchschnittlicheGehaltssteigerung) ** ($alter - $this->arbeitsbeginn);
-        $endgehalt           = $monatslohn * (1 + $this->durchschnittlicheGehaltssteigerung) ** ($this->renteneintritt - $alter);
+        $anfangsgehalt       = $monatslohn * (1 - ($this->durchschnittlicheGehaltssteigerung / 100)) ** ($alter - $this->arbeitsbeginn);
+        $endgehalt           = $monatslohn * (1 + ($this->durchschnittlicheGehaltssteigerung / 100)) ** ($this->renteneintritt - $alter);
         $durchschnittsgehalt = ($anfangsgehalt + $endgehalt) / 2;
 
         $rente = ($durchschnittsgehalt / 100) * ($this->renteneintritt - $this->arbeitsbeginn) * self::KORREKTURFAKTOR;

@@ -17,6 +17,7 @@ final class SparratenRechner
      * SparratenRechner constructor.
      *
      * @param float $zinssatz
+     *      Der Zinssatz in %
      */
     public function __construct(float $zinssatz)
     {
@@ -45,8 +46,9 @@ final class SparratenRechner
     private function getZinsfaktor(int $jahre): float
     {
         $zinsfaktor = 0;
+        $zins       = $this->zinssatz / 100;
         for ($i = 1; $i <= $jahre; $i++) {
-            $zinsfaktor += (1 + $this->zinssatz) ** ($i - 1);
+            $zinsfaktor += (1 + $zins) ** ($i - 1);
         }
 
         return $zinsfaktor;

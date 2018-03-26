@@ -15,25 +15,25 @@ final class KapitalstockRechnerTest extends TestCase
         [
             'laufzeit'     => 2,
             'entnahme'     => 2000,
-            'zinssatz'     => 0.02,
+            'zinssatz'     => 2,
             'kapitalstock' => 47529.41
         ],
         [
             'laufzeit'     => 23,
             'entnahme'     => 2000,
-            'zinssatz'     => 0.03,
+            'zinssatz'     => 3,
             'kapitalstock' => 406486
         ],
         [
             'laufzeit'     => 25,
             'entnahme'     => 999,
-            'zinssatz'     => 0.02,
+            'zinssatz'     => 2,
             'kapitalstock' => 238728.14
         ],
         [
             'laufzeit'     => 21,
             'entnahme'     => 2345,
-            'zinssatz'     => 0.015,
+            'zinssatz'     => 1.5,
             'kapitalstock' => 511265.50
         ]
     ];
