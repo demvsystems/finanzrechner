@@ -10,27 +10,27 @@ use Demv\Werte\Beitragsbemessung\BBG;
  */
 final class ErwerbsminderungsrenteRechner
 {
-    private const FAKTOR_VOLL = 0.48;
-    private const FAKTOR_HALB = 0.24;
+    private const FAKTOR_VOLL = 0.29;
+    private const FAKTOR_HALB = 0.15;
 
     /**
-     * @param float $nettojahresgehalt
+     * @param float $bruttojahresgehalt
      *
      * @return float
      */
-    public function volleRente(float $nettojahresgehalt): float
+    public function volleRente(float $bruttojahresgehalt): float
     {
-        return $this->calc($nettojahresgehalt, self::FAKTOR_VOLL);
+        return $this->calc($bruttojahresgehalt, self::FAKTOR_VOLL);
     }
 
     /**
-     * @param float $nettojahresgehalt
+     * @param float $bruttojahresgehalt
      *
      * @return float
      */
-    public function halbeRente(float $nettojahresgehalt): float
+    public function halbeRente(float $bruttojahresgehalt): float
     {
-        return $this->calc($nettojahresgehalt, self::FAKTOR_HALB);
+        return $this->calc($bruttojahresgehalt, self::FAKTOR_HALB);
     }
 
     /**
