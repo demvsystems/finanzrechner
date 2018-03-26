@@ -5,7 +5,7 @@ php:
   - nightly
 install:
   - composer self-update
-  - composer install --prefer-dist --optimize-autoloader --no-interaction --verbose
+  - composer install --prefer-dist --optimize-autoloader --verbose
 script:
   - composer coverage
 cache:

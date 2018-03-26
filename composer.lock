@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e7caa37e9e4c909de5a4752f4120ea5",
+    "content-hash": "50636405c9bda4ff90cd018fc482a9f1",
     "packages": [
         {
             "name": "demvsystems/werte",
             "version": "v1.15.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:demvsystems/werte.git",
+                "url": "https://github.com/demvsystems/werte.git",
                 "reference": "db32c43accd33462d3a87801ab12fb4c7e307b31"
             },
             "require": {
