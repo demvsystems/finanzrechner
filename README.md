@@ -4,7 +4,7 @@
 
 ### Verschiedene Finanzberechnungen
 
-- [Kapitalstock](Kapitalstock/Readme.md)  
-- [Krankentagegeld](Krankentagegeld/Readme.md)  
-- [Rente](Rente/Readme.md)  
-- [Sparen](Sparen/Readme.md)  
+- [Kapitalstock](src/Kapitalstock/Readme.md)  
+- [Krankentagegeld](src/Krankentagegeld/Readme.md)  
+- [Rente](src/Rente/Readme.md)  
+- [Sparen](src/Sparen/Readme.md)  
