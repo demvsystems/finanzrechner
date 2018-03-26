@@ -29,7 +29,8 @@
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com:demvsystems/werte.git"
+            "url": "git@github.com:demvsystems/werte.git",
+            "no-api": true
         }
     ],
     "scripts": {
