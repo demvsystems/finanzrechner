@@ -19,6 +19,7 @@ final class KapitalstockRechner
      * KapitalstockRechner constructor.
      *
      * @param float $zinssatz
+     *          Der Zinsatz in %
      */
     public function __construct(float $zinssatz)
     {
@@ -32,6 +33,7 @@ final class KapitalstockRechner
      *
      * @param float $monatlicheEntnahme
      * @param int   $laufzeit
+     *      Die Laufzeit in Jahren
      *
      * @return float
      */
@@ -42,7 +44,7 @@ final class KapitalstockRechner
 
         $kapitalstock = 0;
         for ($counter = 1; $counter <= $laufzeit; $counter++) {
-            $kapitalstock = $kapitalstock / (1 + $this->zinssatz);
+            $kapitalstock = $kapitalstock / (1 + ($this->zinssatz / 100));
             $kapitalstock += $monatlicheEntnahme * 12;
         }
 
