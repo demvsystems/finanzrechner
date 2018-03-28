@@ -2,6 +2,7 @@
 
 namespace Finanzrechner\Krankentagegeld;
 
+use Demv\Utils\BruttoNettoRechner\BruttoNettoRechner;
 use Demv\Werte\Beitragsbemessung\BBG;
 use function Dgame\Ensurance\ensure;
 
@@ -16,16 +17,21 @@ final class KrankentagegeldRechner
     private const NETTOSATZ = 0.9;
 
     /**
-     * @param float $bruttojahresgehalt
-     * @param float $nettojahresgehalt
+     * @param float      $nettojahresgehalt
+     * @param float|null $bruttojahresgehalt
      *
      * @return float
      */
-    public function calc(float $bruttojahresgehalt, float $nettojahresgehalt): float
+    public function calc(float $nettojahresgehalt, float $bruttojahresgehalt = null): float
     {
+        ensure($nettojahresgehalt)->isPositive();
+
+        if ($bruttojahresgehalt === null) {
+            $bruttojahresgehalt = BruttoNettoRechner::new()->convertNettoToBrutto($nettojahresgehalt);
+        }
+
         ensure($bruttojahresgehalt)->isNumeric()->isGreaterOrEqualTo($nettojahresgehalt);
         ensure($bruttojahresgehalt)->isPositive();
-        ensure($nettojahresgehalt)->isPositive();
 
         return round(min(self::BRUTTOSATZ * $bruttojahresgehalt,
                          self::NETTOSATZ * $nettojahresgehalt,

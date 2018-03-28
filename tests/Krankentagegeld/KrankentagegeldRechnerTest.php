@@ -24,34 +24,39 @@ final class KrankentagegeldRechnerTest extends TestCase
 
     public function testBrutto()
     {
-        $this->assertEquals(35000, $this->rechner->calc(50000, 40000));
+        $this->assertEquals(35000, $this->rechner->calc(40000, 50000));
     }
 
     public function testNegativeBrutto()
     {
         $this->expectException(EnsuranceException::class);
-        $this->rechner->calc(-50000, 35000);
+        $this->rechner->calc(35000, -50000);
     }
 
     public function testNetto()
     {
-        $this->assertEquals(18000, $this->rechner->calc(50000, 20000));
+        $this->assertEquals(18000, $this->rechner->calc(20000, 50000));
     }
 
     public function testNegativeNetto()
     {
         $this->expectException(EnsuranceException::class);
-        $this->rechner->calc(50000, -35000);
+        $this->rechner->calc(-35000, 50000);
     }
 
     public function testNettoGreaterBrutto()
     {
         $this->expectException(EnsuranceException::class);
-        $this->rechner->calc(50000, 60000);
+        $this->rechner->calc(60000, 50000);
     }
 
     public function testBBG()
     {
-        $this->assertEquals(37170, $this->rechner->calc(100000, 80000));
+        $this->assertEquals(37170, $this->rechner->calc(80000, 100000));
+    }
+
+    public function testBruttoNotSet()
+    {
+        $this->assertEquals(37170, $this->rechner->calc(80000));
     }
 }
