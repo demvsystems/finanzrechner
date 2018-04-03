@@ -36,6 +36,12 @@ final class SparratenRechnerTest extends TestCase
             'zinssatz'     => 1.5,
             'sparrate'     => 1417.20
         ],
+        [
+            'kapitalstock' => 392427.36,
+            'jahre'        => 0,
+            'zinssatz'     => 1.5,
+            'sparrate'     => 32702.28
+        ],
     ];
 
     /**
