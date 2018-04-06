@@ -13,7 +13,7 @@ final class GesetzlicheRenteRechner
 {
     private const KORREKTURFAKTOR = 0.6;
 
-    private const GRUNDSICHERUNG = 409;
+    private const HOECHSTSATZ = 2700;
 
     /**
      * @var int
@@ -80,7 +80,7 @@ final class GesetzlicheRenteRechner
 
         $rente = ($durchschnittsgehalt / 100) * ($this->renteneintritt - $this->arbeitsbeginn) * self::KORREKTURFAKTOR;
 
-        return round(max($rente, self::GRUNDSICHERUNG), 2);
+        return round(min(max($rente, 0), self::HOECHSTSATZ), 2);
     }
 
     /**

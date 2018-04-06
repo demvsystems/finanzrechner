@@ -31,7 +31,12 @@ final class GesetzlicheRenteRechnerTest extends TestCase
         [
             'gehalt' => 222 * 12,
             'alter'  => 50,
-            'rente'  => 409
+            'rente'  => 64.65
+        ],
+        [
+            'gehalt' => 22222 * 12,
+            'alter'  => 50,
+            'rente'  => 2700
         ]
     ];
 
