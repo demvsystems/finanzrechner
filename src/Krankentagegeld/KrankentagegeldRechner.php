@@ -11,6 +11,8 @@ use function Dgame\Ensurance\ensure;
  */
 final class KrankentagegeldRechner
 {
+    private const ARBEITNEHMER_ANTEIL = 0.12;
+
     private const BRUTTOSATZ = 0.7;
 
     private const NETTOSATZ = 0.9;
@@ -29,6 +31,6 @@ final class KrankentagegeldRechner
 
         return round(min(self::BRUTTOSATZ * $bruttojahresgehalt,
                          self::NETTOSATZ * $nettojahresgehalt,
-                         self::BRUTTOSATZ * BBG::KRANKEN_UND_PFLEGE), 2);
+                         self::BRUTTOSATZ * BBG::KRANKEN_UND_PFLEGE) * (1 - self::ARBEITNEHMER_ANTEIL), 2);
     }
 }
