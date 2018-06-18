@@ -29,8 +29,14 @@ final class KrankentagegeldRechner
         ensure($bruttojahresgehalt)->isPositive();
         ensure($nettojahresgehalt)->isPositive();
 
-        return round(min(self::BRUTTOSATZ * $bruttojahresgehalt,
-                         self::NETTOSATZ * $nettojahresgehalt,
-                         self::BRUTTOSATZ * BBG::KRANKEN_UND_PFLEGE) * (1 - self::ARBEITNEHMER_ANTEIL), 2);
+        $values = [self::BRUTTOSATZ * BBG::KRANKEN_UND_PFLEGE];
+        if ($bruttojahresgehalt > 0) {
+            $values[] = self::BRUTTOSATZ * $bruttojahresgehalt;
+        }
+        if ($nettojahresgehalt > 0) {
+            $values[] = self::NETTOSATZ * $nettojahresgehalt;
+        }
+
+        return round(min($values) * (1 - self::ARBEITNEHMER_ANTEIL), 2);
     }
 }
