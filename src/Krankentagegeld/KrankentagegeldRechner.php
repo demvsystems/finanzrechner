@@ -25,7 +25,6 @@ final class KrankentagegeldRechner
      */
     public function calc(float $bruttojahresgehalt, float $nettojahresgehalt): float
     {
-        ensure($bruttojahresgehalt)->isNumeric()->isGreaterOrEqualTo($nettojahresgehalt);
         ensure($bruttojahresgehalt)->isPositive();
         ensure($nettojahresgehalt)->isPositive();
 
