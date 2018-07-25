@@ -14,18 +14,18 @@ final class ErwerbsminderungsrenteRechnerTest extends TestCase
     private $testcases = [
         [
             'gehalt' => 5000 * 12,
-            'voll'   => 17400,
-            'halb'   => 9000,
+            'voll'   => 22800,
+            'halb'   => 10800,
         ],
         [
             'gehalt' => 3500 * 12,
-            'voll'   => 12180,
-            'halb'   => 6300,
+            'voll'   => 15960,
+            'halb'   => 7560,
         ],
         [
             'gehalt' => 10000 * 12,
-            'voll'   => 21402,
-            'halb'   => 11070,
+            'voll'   => 28044,
+            'halb'   => 13284,
         ],
     ];
 

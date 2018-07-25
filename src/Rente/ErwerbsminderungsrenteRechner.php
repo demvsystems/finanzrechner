@@ -10,8 +10,8 @@ use Demv\Werte\Beitragsbemessung\BBG;
  */
 final class ErwerbsminderungsrenteRechner
 {
-    private const FAKTOR_VOLL = 0.29;
-    private const FAKTOR_HALB = 0.15;
+    private const FAKTOR_VOLL = 0.38;
+    private const FAKTOR_HALB = 0.18;
 
     /**
      * @param float $bruttojahresgehalt
