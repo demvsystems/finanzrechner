@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "dgame/php-ensurance": "^1",
+        "dgame/php-ensurance": "^2",
         "demvsystems/werte": "^1"
     },
     "require-dev": {
