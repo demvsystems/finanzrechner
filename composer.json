@@ -2,6 +2,7 @@
     "name": "demvsystems/finanzrechner",
     "type": "library",
     "license": "MIT",
+    "description": "",
     "authors": [
         {
             "name": "DEMV Systems",
@@ -15,7 +16,7 @@
     "require": {
         "php": "^7.1",
         "dgame/php-ensurance": "^1",
-        "demvsystems/werte": "^1"
+        "demvsystems/werte": "^v2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"

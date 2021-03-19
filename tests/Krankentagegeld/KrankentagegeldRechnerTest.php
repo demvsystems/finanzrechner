@@ -56,6 +56,6 @@ final class KrankentagegeldRechnerTest extends TestCase
 
     public function testBBG()
     {
-        $this->assertEquals(37170 * 0.88, $this->rechner->calc(100000, 80000));
+        $this->assertEquals(40635 * 0.88, $this->rechner->calc(100000, 80000));
     }
 }
