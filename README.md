@@ -4,7 +4,24 @@
 
 ### Verschiedene Finanzberechnungen
 
-- [Kapitalstock](src/Kapitalstock)  
-- [Krankentagegeld](src/Krankentagegeld)  
-- [Rente](src/Rente)  
-- [Sparen](src/Sparen)  
+- [Kapitalstock](src/Kapitalstock)
+- [Krankentagegeld](src/Krankentagegeld)
+- [Rente](src/Rente)
+- [Sparen](src/Sparen)
+
+
+## Entwicklung
+
+Zum Entwickeln ist ein Dockerfile enthalten.
+
+### Setup
+
+1. `$ cp ./.env.example ./.env`
+2. Einen Github Token zur `.env` hinzufügen
+3. `sh run.sh composer install`
+
+### Benutzung
+
+Es können Befehle im Docker Container ausgeführt werden:
+
+`sh run.sh composer test`

@@ -24,8 +24,8 @@ final class ErwerbsminderungsrenteRechnerTest extends TestCase
         ],
         [
             'gehalt' => 10000 * 12,
-            'voll'   => 28044,
-            'halb'   => 13284,
+            'voll'   => 31464,
+            'halb'   => 14904,
         ],
     ];
 
