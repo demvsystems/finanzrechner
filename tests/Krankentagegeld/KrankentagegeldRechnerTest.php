@@ -17,7 +17,7 @@ final class KrankentagegeldRechnerTest extends TestCase
      */
     private $rechner;
 
-    protected function setUp()/* The :void return type declaration that should be here would cause a BC issue */
+    protected function setUp(): void
     {
         $this->rechner = new KrankentagegeldRechner();
     }
