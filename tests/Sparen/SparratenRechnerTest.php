@@ -47,7 +47,7 @@ final class SparratenRechnerTest extends TestCase
     /**
      *
      */
-    public function testCalc()
+    public function testCalc(): void
     {
         foreach ($this->testValues as $testValue) {
             $sparratenRechner = new SparratenRechner($testValue['zinssatz']);

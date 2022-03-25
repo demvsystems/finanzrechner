@@ -44,7 +44,7 @@ final class KapitalstockRechner
 
         $kapitalstock = 0;
         for ($counter = 1; $counter <= $laufzeit; $counter++) {
-            $kapitalstock = $kapitalstock / (1 + ($this->zinssatz / 100));
+            $kapitalstock /= (1 + ($this->zinssatz / 100));
             $kapitalstock += $monatlicheEntnahme * 12;
         }
 

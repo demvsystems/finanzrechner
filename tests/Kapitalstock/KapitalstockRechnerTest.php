@@ -38,7 +38,7 @@ final class KapitalstockRechnerTest extends TestCase
         ]
     ];
 
-    public function testCalc()
+    public function testCalc(): void
     {
         foreach ($this->testcases as $testcase) {
             $this->assertEquals($testcase['kapitalstock'],

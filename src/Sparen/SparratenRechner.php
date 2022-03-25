@@ -51,6 +51,6 @@ final class SparratenRechner
             $zinsfaktor += (1 + $zins) ** ($i - 1);
         }
 
-        return $zinsfaktor > 1 ? $zinsfaktor : 1;
+        return max($zinsfaktor, 1);
     }
 }

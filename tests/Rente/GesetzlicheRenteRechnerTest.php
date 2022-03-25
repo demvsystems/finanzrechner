@@ -40,14 +40,14 @@ final class GesetzlicheRenteRechnerTest extends TestCase
         ]
     ];
 
-    public function testCalc()
+    public function testCalc(): void
     {
         foreach ($this->testcases as $testcase) {
             $this->assertEquals($testcase['rente'], (new GesetzlicheRenteRechner())->calc($testcase['alter'], $testcase['gehalt']));
         }
     }
 
-    public function testWithSetters()
+    public function testWithSetters(): void
     {
         $rechner = new GesetzlicheRenteRechner();
         $rechner->setArbeitsbeginn(20);
@@ -56,7 +56,7 @@ final class GesetzlicheRenteRechnerTest extends TestCase
         $this->assertEquals(1057.85, $rechner->calc(50, 4000 * 12));
     }
 
-    public function testCalcPossible()
+    public function testCalcPossible(): void
     {
         $rechner = new GesetzlicheRenteRechner();
         $this->assertFalse($rechner->calcPossible(10));
@@ -64,7 +64,7 @@ final class GesetzlicheRenteRechnerTest extends TestCase
         $this->assertTrue($rechner->calcPossible(50));
     }
 
-    public function testCalcNotPossible()
+    public function testCalcNotPossible(): void
     {
         $this->expectException(InvalidArgumentException::class);
         (new GesetzlicheRenteRechner())->calc(10, 10);

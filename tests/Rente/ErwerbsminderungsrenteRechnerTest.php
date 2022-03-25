@@ -29,7 +29,7 @@ final class ErwerbsminderungsrenteRechnerTest extends TestCase
         ],
     ];
 
-    public function testCalc()
+    public function testCalc(): void
     {
         foreach ($this->testcases as $testcase) {
             $this->assertEquals($testcase['voll'], (new ErwerbsminderungsrenteRechner())->volleRente($testcase['gehalt']));
