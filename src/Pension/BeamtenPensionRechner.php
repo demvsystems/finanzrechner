@@ -8,7 +8,7 @@ use Exception;
 
 /**
  * Class BeamtenPensionRechner
- * @package Finanzrechner\Rente
+ * @package Finanzrechner\Pension
  */
 final class BeamtenPensionRechner
 {
