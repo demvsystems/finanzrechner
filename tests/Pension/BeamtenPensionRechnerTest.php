@@ -15,7 +15,7 @@ final class BeamtenPensionRechnerTest extends TestCase
     /** @var BeamtenPensionRechner $rechner */
     private $rechner;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
