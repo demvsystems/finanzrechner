@@ -6,6 +6,7 @@
 
 - [Kapitalstock](src/Kapitalstock)
 - [Krankentagegeld](src/Krankentagegeld)
+- [Pension](src/Pension)
 - [Rente](src/Rente)
 - [Sparen](src/Sparen)
 
