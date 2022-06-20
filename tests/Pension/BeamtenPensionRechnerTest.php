@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Class BeamtenPensionRechner
  * @package Finanzrechner\Tests\Pension
  */
-final class BeamtenPensionTest extends TestCase
+final class BeamtenPensionRechnerTest extends TestCase
 {
     /** @var BeamtenPensionRechner $rechner */
     private $rechner;

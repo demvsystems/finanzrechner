@@ -23,14 +23,14 @@ final class BeamtenPensionRechner
      * Enthält das Jahr in dem der Kunde seinen Beamtendienst antritt
      * @var int|null
      */
-    private $dienstzeitbeginn = null;
+    private $dienstzeitbeginn;
 
     /**
      * Enthält das Jahr, in dem der Kunde seinen Beamtendienst beendet und in die
      * Pension eintritt
      * @var int
      */
-    private $pensionseintritt = null;
+    private $pensionseintritt;
 
     /**
      * @param int $dienstzeitbeginn
@@ -75,7 +75,8 @@ final class BeamtenPensionRechner
 
         if ($pensionssatz <= self::MIN_PENSIONSSATZ) {
             return $dienstbezuege * self::MIN_PENSIONSSATZ;
-        } else if ($pensionssatz >= self::MAX_PENSIONSSATZ) {
+        }
+        if ($pensionssatz >= self::MAX_PENSIONSSATZ) {
             return $dienstbezuege * self::MAX_PENSIONSSATZ;
         }
 
