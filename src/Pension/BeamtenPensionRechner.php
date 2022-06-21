@@ -76,6 +76,7 @@ final class BeamtenPensionRechner
         if ($pensionssatz <= self::MIN_PENSIONSSATZ) {
             return $dienstbezuege * self::MIN_PENSIONSSATZ;
         }
+
         if ($pensionssatz >= self::MAX_PENSIONSSATZ) {
             return $dienstbezuege * self::MAX_PENSIONSSATZ;
         }
