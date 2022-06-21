@@ -57,7 +57,7 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->rechner->setDienstzeitbeginn(2000);
         $this->rechner->setPensionseintritt(2025);
 
-        // Pensionssatz-Faktor * Anzahl Dienstjahre / 100 * Diensbezüge
+        // Pensionssatz-Faktor * Anzahl Dienstjahre / 100 * Dienstbezüge
         $pension = 1.79375 * 25 / 100 * 1000;
 
         $this->assertEquals($pension, $this->rechner->calc(1000));
