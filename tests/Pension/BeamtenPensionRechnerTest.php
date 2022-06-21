@@ -2,6 +2,7 @@
 
 namespace Finanzrechner\Tests\Pension;
 
+use Dgame\Ensurance\Exception\EnsuranceException;
 use Exception;
 use Finanzrechner\Pension\BeamtenPensionRechner;
 use PHPUnit\Framework\TestCase;
@@ -66,5 +67,11 @@ final class BeamtenPensionRechnerTest extends TestCase
     {
         $this->expectException(Exception::class);
         $this->rechner->calc(1000);
+    }
+
+    public function testThrowsIfDienstbezuegeIsNegative()
+    {
+        $this->expectException(EnsuranceException::class);
+        $this->rechner->calc(-1000);
     }
 }
