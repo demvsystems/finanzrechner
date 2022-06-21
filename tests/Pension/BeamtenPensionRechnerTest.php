@@ -74,4 +74,16 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->expectException(EnsuranceException::class);
         $this->rechner->calc(-1000);
     }
+
+    public function testThrowsIfDienstzeitbeginnIsNegative()
+    {
+        $this->expectException(EnsuranceException::class);
+        $this->rechner->setDienstzeitbeginn(-1);
+    }
+
+    public function testThrowsIfPensionseintrittIsNegative()
+    {
+        $this->expectException(EnsuranceException::class);
+        $this->rechner->setPensionseintritt(-1);
+    }
 }
