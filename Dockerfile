@@ -1,4 +1,4 @@
-FROM php:7.1-cli
+FROM php:8.1-cli
 
 ARG GITHUB_TOKEN
 
