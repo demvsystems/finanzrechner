@@ -14,7 +14,6 @@ RUN apk update && \
 
 RUN if [ ${WITH_XDEBUG} = true ]; then \
     pecl install xdebug && docker-php-ext-enable xdebug \
-    # Copy xdebug configuration for remote debugging
 ;fi
 
 RUN apk del .build-deps
