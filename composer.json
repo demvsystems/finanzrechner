@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": "^7.1|^8.0",
+        "php": "^7.4|^8.1",
         "dgame/php-ensurance": "^2.3",
         "demvsystems/werte": "^v2.0"
     },
@@ -34,7 +34,7 @@
         }
     ],
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit --do-not-cache-result",
         "coverage": "phpunit --coverage-clover=coverage.xml"
     }
 }
