@@ -2,8 +2,8 @@
 
 namespace Finanzrechner\Rente;
 
-use function Dgame\Ensurance\ensure;
 use InvalidArgumentException;
+use function Dgame\Ensurance\ensure;
 
 /**
  * Class GesetzlicheRenteRechner

@@ -42,7 +42,7 @@ final class KapitalstockRechnerTest extends TestCase
     {
         foreach ($this->testcases as $testcase) {
             $this->assertEquals($testcase['kapitalstock'],
-                                (new KapitalstockRechner($testcase['zinssatz']))->calc($testcase['entnahme'], $testcase['laufzeit']));
+                (new KapitalstockRechner($testcase['zinssatz']))->calc($testcase['entnahme'], $testcase['laufzeit']));
         }
     }
 }
