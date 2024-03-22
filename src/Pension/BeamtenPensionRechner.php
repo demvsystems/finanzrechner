@@ -2,9 +2,9 @@
 
 namespace Finanzrechner\Pension;
 
-use function Dgame\Ensurance\ensure;
-
 use Exception;
+
+use function Dgame\Ensurance\ensure;
 
 /**
  * Class BeamtenPensionRechner
@@ -18,7 +18,7 @@ class Pensionsberechnung
 
     public function __construct(float $pensionsbetrag, bool $isMindestruhegehalt)
     {
-        $this->pensionsbetrag = $pensionsbetrag;
+        $this->pensionsbetrag      = $pensionsbetrag;
         $this->isMindestruhegehalt = $isMindestruhegehalt;
     }
 }
