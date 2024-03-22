@@ -10,6 +10,19 @@ use Exception;
  * Class BeamtenPensionRechner
  * @package Finanzrechner\Pension
  */
+
+class Pensionsberechnung
+{
+    public float $pensionsbetrag;
+    public bool $isMindestruhegehalt;
+
+    public function __construct(float $pensionsbetrag, bool $isMindestruhegehalt)
+    {
+        $this->pensionsbetrag = $pensionsbetrag;
+        $this->isMindestruhegehalt = $isMindestruhegehalt;
+    }
+}
+
 final class BeamtenPensionRechner
 {
     private const PENSIONSSATZ_FAKTOR   = 1.79375;
@@ -18,6 +31,11 @@ final class BeamtenPensionRechner
 
     private const MIN_PENSIONSSATZ      = 0.35;
     private const MAX_PENSIONSSATZ      = 0.7175;
+
+    // Netto Berechnung: https://oeffentlicher-dienst.info/c/t/rechner/beamte/bund?id=beamte-bund&g=A_4&s=8&f=0&z=100&zulage=&stkl=1&r=0&zkf=0
+    private const NETTO_ENDSTUFE_A4     = 2670.93;
+
+    private const MIN_PENSIONSSATZ_MINDESTRUHEGEHALT    = 0.65;
 
     /**
      * Enthält das Jahr in dem der Kunde seinen Beamtendienst antritt
@@ -50,6 +68,11 @@ final class BeamtenPensionRechner
         $this->pensionseintritt = $pensionseintritt;
     }
 
+    public static function mindestruhegehalt(): float
+    {
+        return self::NETTO_ENDSTUFE_A4 * self::MIN_PENSIONSSATZ_MINDESTRUHEGEHALT;
+    }
+
     /**
      * Gibt die monatliche Pension zurück
      *
@@ -57,7 +80,7 @@ final class BeamtenPensionRechner
      *
      * @return float
      */
-    public function calc(float $dienstbezuege): float
+    public function calc(float $dienstbezuege): Pensionsberechnung
     {
         ensure($dienstbezuege)->isPositive();
 
@@ -68,19 +91,21 @@ final class BeamtenPensionRechner
         $dienstjahre = $this->pensionseintritt - $this->dienstzeitbeginn;
 
         if ($dienstjahre < self::MIN_DIENSTJAHRE) {
-            return 0;
+            return new Pensionsberechnung(0, false);
         }
 
         $pensionssatz = self::PENSIONSSATZ_FAKTOR * $dienstjahre / 100;
 
-        if ($pensionssatz <= self::MIN_PENSIONSSATZ) {
-            return $dienstbezuege * self::MIN_PENSIONSSATZ;
+        $effectivePensionssatz = min([max([$pensionssatz, self::MIN_PENSIONSSATZ]), self::MAX_PENSIONSSATZ]);
+
+        $pensionsbetrag = $dienstbezuege * $effectivePensionssatz;
+
+        $mindestruhegehalt = self::mindestruhegehalt();
+
+        if ($pensionsbetrag < $mindestruhegehalt) {
+            return new Pensionsberechnung($mindestruhegehalt, true);
         }
 
-        if ($pensionssatz >= self::MAX_PENSIONSSATZ) {
-            return $dienstbezuege * self::MAX_PENSIONSSATZ;
-        }
-
-        return $dienstbezuege * $pensionssatz;
+        return new Pensionsberechnung($pensionsbetrag, false);
     }
 }

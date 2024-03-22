@@ -29,7 +29,10 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->rechner->setDienstzeitbeginn(2000);
         $this->rechner->setPensionseintritt(2004);
 
-        $this->assertEquals(0, $this->rechner->calc(1000));
+        $result = $this->rechner->calc(1000);
+
+        $this->assertEquals(0, $result->pensionsbetrag);
+        $this->assertFalse($result->isMindestruhegehalt);
     }
 
     public function testCalcMinimumPension()
@@ -37,9 +40,14 @@ final class BeamtenPensionRechnerTest extends TestCase
         // Bei weniger als 20 Jahren Dienstzeit errechnet sich ein Pensionssatz von
         // weniger als 35% -> Minimum der Pension ist immer 35% von den Dienstbezügen
         $this->rechner->setDienstzeitbeginn(2000);
-        $this->rechner->setPensionseintritt(2019);
+        $this->rechner->setPensionseintritt(2010);
 
-        $this->assertEquals(0.35 * 1000, $this->rechner->calc(1000));
+        // Beachten, dass diese calculation der Pension nicht im Mindestruhegehalt endet, also Dienstbezüge
+        // hoch genug ist
+        $result = $this->rechner->calc(6000);
+
+        $this->assertEquals(0.35 * 6000, $result->pensionsbetrag);
+        $this->assertFalse($result->isMindestruhegehalt);
     }
 
     public function testCalcMaximumPension()
@@ -49,7 +57,12 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->rechner->setDienstzeitbeginn(2000);
         $this->rechner->setPensionseintritt(2041);
 
-        $this->assertEquals(0.7175 * 1000, $this->rechner->calc(1000));
+        // Beachten, dass diese calculation der Pension nicht im Mindestruhegehalt endet, also Dienstbezüge
+        // hoch genug ist
+        $result = $this->rechner->calc(4000);
+
+        $this->assertEquals(0.7175 * 4000, $result->pensionsbetrag);
+        $this->assertFalse($result->isMindestruhegehalt);
     }
 
     public function testCalcPension()
@@ -58,9 +71,11 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->rechner->setPensionseintritt(2025);
 
         // Pensionssatz-Faktor * Anzahl Dienstjahre / 100 * Dienstbezüge
-        $pension = 1.79375 * 25 / 100 * 1000;
+        $result = $this->rechner->calc(4000);
+        $pension = 1.79375 * 25 / 100 * 4000;
 
-        $this->assertEquals($pension, $this->rechner->calc(1000));
+        $this->assertEquals($pension, $result->pensionsbetrag);
+        $this->assertFalse($result->isMindestruhegehalt);
     }
 
     public function testThrowsIfDienstzeitOrPensionseintrittNotSet()
@@ -85,5 +100,19 @@ final class BeamtenPensionRechnerTest extends TestCase
     {
         $this->expectException(EnsuranceException::class);
         $this->rechner->setPensionseintritt(-1);
+    }
+
+    public function testPensionIsMinRuhegehalt()
+    {
+        // ist das amtsabhängige Mindestruhegehalt kleiner als das amtsunabhängige Mindestruhegehalt sollte
+        // $result->pensionsbetrag === $minRuhegehalt sein und isMindestruhegehalt = true
+        $this->rechner->setDienstzeitbeginn(2000);
+        $this->rechner->setPensionseintritt(2025);
+
+        $result = $this->rechner->calc(1000);
+        $minRuhegehalt = BeamtenPensionRechner::mindestruhegehalt();
+
+        $this->assertEquals($minRuhegehalt, $result->pensionsbetrag);
+        $this->assertTrue($result->isMindestruhegehalt);
     }
 }
