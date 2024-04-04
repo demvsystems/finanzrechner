@@ -6,6 +6,7 @@ use Dgame\Ensurance\Exception\EnsuranceException;
 use Exception;
 use Finanzrechner\Pension\BeamtenPensionRechner;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 /**
  * Class BeamtenPensionRechner
@@ -13,8 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class BeamtenPensionRechnerTest extends TestCase
 {
-    /** @var BeamtenPensionRechner $rechner */
-    private $rechner;
+    private BeamtenPensionRechner $rechner;
 
     protected function setUp(): void
     {
@@ -23,6 +23,9 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->rechner = new BeamtenPensionRechner();
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testCalcNoPension()
     {
         // Bei weniger als fünf Jahren Dienstzeit wird keine Pension gezahlt
@@ -31,14 +34,17 @@ final class BeamtenPensionRechnerTest extends TestCase
 
         $result = $this->rechner->calc(1000);
 
-        $this->assertEquals(0, $result->pensionsbetrag);
-        $this->assertFalse($result->isMindestruhegehalt);
+        $this->assertEquals(0, $result->getPensionsbetrag());
+        $this->assertFalse($result->isMindestruhegehalt());
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testCalcMinimumPension()
     {
         // Bei weniger als 20 Jahren Dienstzeit errechnet sich ein Pensionssatz von
-        // weniger als 35% -> Minimum der Pension ist immer 35% von den Dienstbezügen
+        // weniger als 35 % → Minimum der Pension ist immer 35 % von den Dienstbezügen
         $this->rechner->setDienstzeitbeginn(2000);
         $this->rechner->setPensionseintritt(2010);
 
@@ -46,14 +52,17 @@ final class BeamtenPensionRechnerTest extends TestCase
         // hoch genug ist
         $result = $this->rechner->calc(6000);
 
-        $this->assertEquals(0.35 * 6000, $result->pensionsbetrag);
-        $this->assertFalse($result->isMindestruhegehalt);
+        $this->assertEquals(0.35 * 6000, $result->getPensionsbetrag());
+        $this->assertFalse($result->isMindestruhegehalt());
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testCalcMaximumPension()
     {
         // Nach 40+ Jahren Dienstzeit errechnet sich ein Pensionssatz von größer als
-        // 71.75 % -> Maximum der Pension ist 71.75% von den Dienstbezügen
+        // 71,75 % → Maximum der Pension ist 71,75 % von den Dienstbezügen
         $this->rechner->setDienstzeitbeginn(2000);
         $this->rechner->setPensionseintritt(2041);
 
@@ -61,10 +70,13 @@ final class BeamtenPensionRechnerTest extends TestCase
         // hoch genug ist
         $result = $this->rechner->calc(4000);
 
-        $this->assertEquals(0.7175 * 4000, $result->pensionsbetrag);
-        $this->assertFalse($result->isMindestruhegehalt);
+        $this->assertEquals(0.7175 * 4000, $result->getPensionsbetrag());
+        $this->assertFalse($result->isMindestruhegehalt());
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testCalcPension()
     {
         $this->rechner->setDienstzeitbeginn(2000);
@@ -74,34 +86,49 @@ final class BeamtenPensionRechnerTest extends TestCase
         $result  = $this->rechner->calc(4000);
         $pension = 1.79375 * 25 / 100 * 4000;
 
-        $this->assertEquals($pension, $result->pensionsbetrag);
-        $this->assertFalse($result->isMindestruhegehalt);
+        $this->assertEquals($pension, $result->getPensionsbetrag());
+        $this->assertFalse($result->isMindestruhegehalt());
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testThrowsIfDienstzeitOrPensionseintrittNotSet()
     {
         $this->expectException(Exception::class);
         $this->rechner->calc(1000);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testThrowsIfDienstbezuegeIsNegative()
     {
         $this->expectException(EnsuranceException::class);
         $this->rechner->calc(-1000);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testThrowsIfDienstzeitbeginnIsNegative()
     {
         $this->expectException(EnsuranceException::class);
         $this->rechner->setDienstzeitbeginn(-1);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testThrowsIfPensionseintrittIsNegative()
     {
         $this->expectException(EnsuranceException::class);
         $this->rechner->setPensionseintritt(-1);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testPensionIsMinRuhegehalt()
     {
         // ist das amtsabhängige Mindestruhegehalt kleiner als das amtsunabhängige Mindestruhegehalt sollte
@@ -110,9 +137,9 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->rechner->setPensionseintritt(2025);
 
         $result        = $this->rechner->calc(1000);
-        $minRuhegehalt = BeamtenPensionRechner::mindestruhegehalt();
+        $minRuhegehalt = BeamtenPensionRechner::getMindestruhegehalt();
 
-        $this->assertEquals($minRuhegehalt, $result->pensionsbetrag);
-        $this->assertTrue($result->isMindestruhegehalt);
+        $this->assertEquals($minRuhegehalt, $result->getPensionsbetrag());
+        $this->assertTrue($result->isMindestruhegehalt());
     }
 }

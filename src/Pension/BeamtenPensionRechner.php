@@ -4,24 +4,8 @@ namespace Finanzrechner\Pension;
 
 use Exception;
 
+use Throwable;
 use function Dgame\Ensurance\ensure;
-
-/**
- * Class BeamtenPensionRechner
- * @package Finanzrechner\Pension
- */
-
-class Pensionsberechnung
-{
-    public float $pensionsbetrag;
-    public bool $isMindestruhegehalt;
-
-    public function __construct(float $pensionsbetrag, bool $isMindestruhegehalt)
-    {
-        $this->pensionsbetrag      = $pensionsbetrag;
-        $this->isMindestruhegehalt = $isMindestruhegehalt;
-    }
-}
 
 final class BeamtenPensionRechner
 {
@@ -38,20 +22,19 @@ final class BeamtenPensionRechner
     private const MIN_PENSIONSSATZ_MINDESTRUHEGEHALT    = 0.65;
 
     /**
-     * Enthält das Jahr in dem der Kunde seinen Beamtendienst antritt
-     * @var int|null
+     * Enthält das Jahr, in dem der Kunde seinen Beamtendienst antritt
      */
-    private $dienstzeitbeginn;
+    private ?int $dienstzeitbeginn = null;
 
     /**
      * Enthält das Jahr, in dem der Kunde seinen Beamtendienst beendet und in die
      * Pension eintritt
-     * @var int
      */
-    private $pensionseintritt;
+    private ?int $pensionseintritt = null;
 
     /**
      * @param int $dienstzeitbeginn
+     * @throws Throwable
      */
     public function setDienstzeitbeginn(int $dienstzeitbeginn): void
     {
@@ -61,6 +44,7 @@ final class BeamtenPensionRechner
 
     /**
      * @param int $pensionseintritt
+     * @throws Throwable
      */
     public function setPensionseintritt(int $pensionseintritt): void
     {
@@ -68,7 +52,7 @@ final class BeamtenPensionRechner
         $this->pensionseintritt = $pensionseintritt;
     }
 
-    public static function mindestruhegehalt(): float
+    public static function getMindestruhegehalt(): float
     {
         return self::NETTO_ENDSTUFE_A4 * self::MIN_PENSIONSSATZ_MINDESTRUHEGEHALT;
     }
@@ -78,7 +62,8 @@ final class BeamtenPensionRechner
      *
      * @param float $dienstbezuege
      *
-     * @return float
+     * @return Pensionsberechnung
+     * @throws Throwable
      */
     public function calc(float $dienstbezuege): Pensionsberechnung
     {
@@ -100,7 +85,7 @@ final class BeamtenPensionRechner
 
         $pensionsbetrag = $dienstbezuege * $effectivePensionssatz;
 
-        $mindestruhegehalt = self::mindestruhegehalt();
+        $mindestruhegehalt = self::getMindestruhegehalt();
 
         if ($pensionsbetrag < $mindestruhegehalt) {
             return new Pensionsberechnung($mindestruhegehalt, true);
