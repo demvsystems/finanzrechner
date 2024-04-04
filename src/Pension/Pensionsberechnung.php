@@ -24,7 +24,7 @@ class Pensionsberechnung
 
     public function __construct(float $pensionsbetrag, bool $isMindestruhegehalt)
     {
-        $this->pensionsbetrag = $pensionsbetrag;
+        $this->pensionsbetrag      = $pensionsbetrag;
         $this->isMindestruhegehalt = $isMindestruhegehalt;
     }
 }
