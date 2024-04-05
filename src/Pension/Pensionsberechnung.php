@@ -10,6 +10,14 @@ class Pensionsberechnung
 {
     private float $pensionsbetrag;
 
+    private bool $isMindestruhegehalt;
+
+    public function __construct(float $pensionsbetrag, bool $isMindestruhegehalt)
+    {
+        $this->pensionsbetrag      = $pensionsbetrag;
+        $this->isMindestruhegehalt = $isMindestruhegehalt;
+    }
+
     public function getPensionsbetrag(): float
     {
         return $this->pensionsbetrag;
@@ -18,13 +26,5 @@ class Pensionsberechnung
     public function isMindestruhegehalt(): bool
     {
         return $this->isMindestruhegehalt;
-    }
-
-    private bool $isMindestruhegehalt;
-
-    public function __construct(float $pensionsbetrag, bool $isMindestruhegehalt)
-    {
-        $this->pensionsbetrag      = $pensionsbetrag;
-        $this->isMindestruhegehalt = $isMindestruhegehalt;
     }
 }
