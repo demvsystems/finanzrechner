@@ -6,7 +6,7 @@ namespace Finanzrechner\Pension;
  * Class BeamtenPensionRechner
  * @package Finanzrechner\Pension
  */
-class Pensionsberechnung
+class Pensionsberechnung implements \JsonSerializable
 {
     private float $pensionsbetrag;
 
@@ -26,5 +26,13 @@ class Pensionsberechnung
     public function isMindestruhegehalt(): bool
     {
         return $this->isMindestruhegehalt;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'pensionsbetrag' => $this->pensionsbetrag,
+            'isMindestruhegehalt' => $this->isMindestruhegehalt
+        ];
     }
 }
