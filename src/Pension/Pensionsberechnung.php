@@ -31,7 +31,7 @@ class Pensionsberechnung implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'pensionsbetrag' => $this->pensionsbetrag,
+            'pensionsbetrag'      => $this->pensionsbetrag,
             'isMindestruhegehalt' => $this->isMindestruhegehalt
         ];
     }
