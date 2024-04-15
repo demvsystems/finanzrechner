@@ -17,7 +17,7 @@ class Pensionsberechnung implements \JsonSerializable
     public function __construct(float $pensionsbetrag, float $pensionseintritt, bool $isMindestruhegehalt)
     {
         $this->pensionsbetrag      = $pensionsbetrag;
-        $this->pensionseintritt    = $pensionseintritt;
+        $this->pensionseintritt   = $pensionseintritt;
         $this->isMindestruhegehalt = $isMindestruhegehalt;
     }
 
@@ -40,7 +40,7 @@ class Pensionsberechnung implements \JsonSerializable
     {
         return [
             'pensionsbetrag'      => $this->pensionsbetrag,
-            '$pensionseintritt'   => $this->pensionseintritt,
+            'pensionseintritt'   => $this->pensionseintritt,
             'isMindestruhegehalt' => $this->isMindestruhegehalt
         ];
     }
