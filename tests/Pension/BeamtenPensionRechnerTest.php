@@ -142,4 +142,17 @@ final class BeamtenPensionRechnerTest extends TestCase
         $this->assertEquals($minRuhegehalt, $result->getPensionsbetrag());
         $this->assertTrue($result->isMindestruhegehalt());
     }
+
+    /**
+     * @throws Throwable
+     */
+    public function testPensionseintritt()
+    {
+        $this->rechner->setDienstzeitbeginn(2000);
+        $this->rechner->setPensionseintritt(2035);
+
+        $result = $this->rechner->calc(5000);
+
+        $this->assertEquals(2035, $result->getPensionseintritt());
+    }
 }

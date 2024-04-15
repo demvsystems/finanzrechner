@@ -76,7 +76,7 @@ final class BeamtenPensionRechner
         $dienstjahre = $this->pensionseintritt - $this->dienstzeitbeginn;
 
         if ($dienstjahre < self::MIN_DIENSTJAHRE) {
-            return new Pensionsberechnung(0, false);
+            return new Pensionsberechnung(0, $this->pensionseintritt, false);
         }
 
         $pensionssatz = self::PENSIONSSATZ_FAKTOR * $dienstjahre / 100;
@@ -88,9 +88,9 @@ final class BeamtenPensionRechner
         $mindestruhegehalt = self::getMindestruhegehalt();
 
         if ($pensionsbetrag < $mindestruhegehalt) {
-            return new Pensionsberechnung($mindestruhegehalt, true);
+            return new Pensionsberechnung($mindestruhegehalt, $this->pensionseintritt, true);
         }
 
-        return new Pensionsberechnung($pensionsbetrag, false);
+        return new Pensionsberechnung($pensionsbetrag, $this->pensionseintritt, false);
     }
 }
