@@ -16,7 +16,8 @@
     "require": {
         "php": "^7.4|^8.1",
         "dgame/php-ensurance": "^2.3",
-        "demvsystems/werte": "^v2.0"
+        "demvsystems/werte": "^v2.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0|^9.5"
