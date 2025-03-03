@@ -17,7 +17,10 @@ final class BeamtenPensionRechner
     private const MAX_PENSIONSSATZ      = 0.7175;
 
     // Netto Berechnung: https://oeffentlicher-dienst.info/c/t/rechner/beamte/bund?id=beamte-bund&g=A_4&s=8&f=0&z=100&zulage=&stkl=1&r=0&zkf=0
-    private const NETTO_ENDSTUFE_A4     = 2670.93;
+    private const NETTO_ENDSTUFE_A4     = 3157.76;
+
+    // FIX_BETRAG -> § 14 Abs. 4 BeamtVG https://www.gesetze-im-internet.de/beamtvg/__14.html
+    private const FIX_BETRAG           = 30.68;
 
     private const MIN_PENSIONSSATZ_MINDESTRUHEGEHALT    = 0.65;
 
@@ -54,7 +57,7 @@ final class BeamtenPensionRechner
 
     public static function getMindestruhegehalt(): float
     {
-        return self::NETTO_ENDSTUFE_A4 * self::MIN_PENSIONSSATZ_MINDESTRUHEGEHALT;
+        return self::NETTO_ENDSTUFE_A4 * self::MIN_PENSIONSSATZ_MINDESTRUHEGEHALT + self::FIX_BETRAG;
     }
 
     /**
