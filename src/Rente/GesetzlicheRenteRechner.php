@@ -13,7 +13,7 @@ final class GesetzlicheRenteRechner
 {
     private const KORREKTURFAKTOR = 0.6;
 
-    private const HOECHSTSATZ = 2700;
+    private const HOECHSTSATZ = 3450;
 
     /**
      * @var int
